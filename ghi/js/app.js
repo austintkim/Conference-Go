@@ -24,6 +24,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 
       if (!response.ok) {
         // Figure out what to do when the response is bad
+        const errorMessage = `
+        <div class="alert alert-danger" role="alert">
+        Sorry we couldn't fetch that data!
+        </div>
+        `
+        const column = document.querySelector('.row');
+        column.innerHTML += errorMessage;
       } else {
         const data = await response.json();
 
@@ -46,7 +53,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
       }
     } catch (e) {
-      // Figure out what to do if an error is raised
+      console.error(e);
+        // Figure out what to do if an error is raised
+
     }
 
   });
