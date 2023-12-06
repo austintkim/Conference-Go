@@ -19,7 +19,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                 'Content-Type': 'application/json',
             }
         };
-        console.log(fetchConfig);
         const response = await fetch(locationUrl, fetchConfig);
         if (response.ok) {
             formTag.reset();
@@ -29,8 +28,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        const selectTag = document.getElementById('state')
+        const selectTag = document.getElementById('state');
         for (const state of data.states) {
             for (const stateName in state ) {
                 const option = document.createElement('option');
@@ -40,7 +38,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             }
         }
-        console.log(selectTag)
     }
 
 });
