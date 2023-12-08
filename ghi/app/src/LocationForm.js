@@ -38,13 +38,13 @@ function LocationForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     //create an empty JSON object
     const data = {};
     data.room_count = roomCount;
     data.name = name;
     data.city = city;
     data.state = state;
+    console.log(data);
 
     const locationUrl = 'http://localhost:8000/api/locations/';
     const fetchConfig = {
@@ -58,6 +58,7 @@ function LocationForm(props) {
     const response = await fetch(locationUrl, fetchConfig);
     if (response.ok) {
       const newLocation = await response.json();
+      console.log(newLocation);
 
       setName('');
       setRoomCount('');
