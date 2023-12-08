@@ -57,7 +57,8 @@ def api_list_states(request):
 
     for state in states:
         d = {}
-        d[state.name] = state.abbreviation
+        d["name"] = state.name
+        d["abbreviation"] = state.abbreviation
 
         state_list.append(d)
 
