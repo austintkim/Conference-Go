@@ -39,7 +39,7 @@ function AttendeeForm(props) {
         data.name = name;
         data.email = email;
         data.company_name = companyName;
-        data.conference = conference;
+        data.conference = `/api/conferences/${conference}/`;
         console.log(data);
 
 
@@ -47,7 +47,7 @@ function AttendeeForm(props) {
 
 
 
-        const attendeeUrl = `http://localhost:8001/api/conferences/${conference}/attendees/`;
+        const attendeeUrl = 'http://localhost:8001/api/attendees/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
