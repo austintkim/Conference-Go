@@ -8,12 +8,12 @@ from .models import AccountVO, Attendee, ConferenceVO
 
 class ConferenceVODetailEncoder(ModelEncoder):
     model = ConferenceVO
-    properties = ["name", "import_href"]
+    properties = ["name", "import_href", "id"]
 
 
 class AttendeeListEncoder(ModelEncoder):
     model = Attendee
-    properties = ["name"]
+    properties = ["name", "id"]
 
     def get_extra_data(self, o):
         return {"conference": o.conference.name}
@@ -22,8 +22,8 @@ class AttendeeListEncoder(ModelEncoder):
 class AttendeeDetailEncoder(ModelEncoder):
     model = Attendee
     properties = [
-        "email",
         "name",
+        "email",
         "company_name",
         "created",
         "conference",

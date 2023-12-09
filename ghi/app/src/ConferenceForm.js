@@ -113,27 +113,27 @@ function ConferenceForm(props) {
               <h1>Create a new conference</h1>
               <form onSubmit={handleSubmit} id="create-conference-form">
                 <div className="form-floating mb-3">
-                  <input onChange={handleNameChange} placeholder="Name" required type="text" name = "name" id="name" className="form-control"/>
+                  <input onChange={handleNameChange} placeholder="Name" required type="text" name = "name" id="name" className="form-control" value={name}/>
                   <label htmlFor="name">Name</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input onChange={handleStartsChange} placeholder="Starts" required type="date" name = "starts" id="starts" className="form-control"/>
+                  <input onChange={handleStartsChange} placeholder="Starts" required type="date" name = "starts" id="starts" className="form-control" value={starts}/>
                   <label htmlFor="starts">Starts</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input onChange={handleEndsChange} placeholder="Ends" required type="date" name = "ends" id="ends" className="form-control"/>
+                  <input onChange={handleEndsChange} placeholder="Ends" required type="date" name = "ends" id="ends" className="form-control" value={ends}/>
                   <label htmlFor="ends">Ends</label>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="description">Description</label>
-                  <textarea onChange={handleDescriptionChange} name = "description" id="description" className="form-control" rows="3"></textarea>
+                  <textarea onChange={handleDescriptionChange} name = "description" id="description" className="form-control" value={description} rows="3"></textarea>
                 </div>
                 <div className="form-floating mb-3">
-                  <input onChange={handleMaxPresentationsChange} placeholder="maxPresentations" required type="text" name = "max_presentations" id="max_presentations" className="form-control"/>
+                  <input onChange={handleMaxPresentationsChange} placeholder="maxPresentations" required type="text" name = "max_presentations" id="max_presentations" className="form-control" value={maxPresentations}/>
                   <label htmlFor="max_presentations">Maximum presentations</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input onChange={handleMaxAttendeesChange}placeholder="maxAttendees" required type="text" name = "max_attendees" id="max_attendees" className="form-control"/>
+                  <input onChange={handleMaxAttendeesChange}placeholder="maxAttendees" required type="text" name = "max_attendees" id="max_attendees" className="form-control" value={maxAttendees}/>
                   <label htmlFor="max_attendees">Maximum attendees</label>
                 </div>
                 <div className="mb-3">
