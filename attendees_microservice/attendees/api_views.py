@@ -88,7 +88,7 @@ def api_list_attendees(request, conference_vo_id=None):
             safe=False,
         )
 
-
+@require_http_methods(["GET", "PUT", "DELETE"])
 def api_show_attendee(request, pk):
     """
     Returns the details for the Attendee model specified
@@ -109,9 +109,14 @@ def api_show_attendee(request, pk):
         }
     }
     """
-    attendee = Attendee.objects.get(id=pk)
-    return JsonResponse(
-        attendee,
-        encoder=AttendeeDetailEncoder,
-        safe=False,
-    )
+    if request.method == "GET":
+        attendee = Attendee.objects.get(id=pk)
+        return JsonResponse(
+            attendee,
+            encoder=AttendeeDetailEncoder,
+            safe=False,
+        )
+    elif request.method == "DELETE":
+        count, _ =Attendee.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})
+    # Need to write else statement for PUT request
