@@ -64,8 +64,8 @@ function PresentationForm(props) {
         event.preventDefault();
             //create an empty JSON object
         const data = {};
-        data.name = name;
-        data.email = email;
+        data.presenter_name = name;
+        data.presenter_email = email;
         data.company_name = companyName;
         data.title = title;
         data.synopsis = synopsis;
