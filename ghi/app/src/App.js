@@ -4,6 +4,7 @@ import AttendeesList from './AttendeesList';
 import LocationForm from './LocationForm';
 import ConferenceForm from './ConferenceForm';
 import AttendeeForm from './AttendeeForm';
+import PresentationForm from './PresentationForm';
 import {
   NavLink, Route, Routes, useNavigate
 } from "react-router-dom";
@@ -30,7 +31,10 @@ function App(props) {
           path='/attendees'
           element= {<AttendeesList attendees= {props.attendees} />}
         ></Route>
-
+        <Route
+          path='/presentations/new'
+          element= {<PresentationForm />}
+        ></Route>
       </Routes>
 
     </div>
