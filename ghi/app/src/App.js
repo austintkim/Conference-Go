@@ -28,14 +28,10 @@ function App(props) {
         ></Route>
         <Route
           path='/attendees'
-          element= {<AttendeesList />}
+          element= {<AttendeesList attendees= {props.attendees} />}
         ></Route>
 
       </Routes>
-      {/* <LocationForm /> */}
-      {/* <AttendeesList attendees = {props.attendees}/> */}
-      {/* <ConferenceForm /> */}
-      {/* <AttendeeForm /> */}
 
     </div>
     </>
