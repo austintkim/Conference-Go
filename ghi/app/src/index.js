@@ -17,6 +17,21 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
+// async function loadConferences() {
+//   const response = await fetch('http://localhost:8000/api/conferences/');
+//   if (response.ok) {
+//     const data = await response.json();
+//     root.render(
+//       <BrowserRouter>
+//         <App conferences={data.conferences} />
+//       </BrowserRouter>
+//     );
+//   } else {
+//     console.error(response);
+//   }
+// }
+// loadConferences();
+
 async function loadAttendees() {
   const response = await fetch('http://localhost:8001/api/attendees/');
   if (response.ok) {

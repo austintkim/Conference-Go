@@ -29,7 +29,13 @@ class LocationDetailEncoder(ModelEncoder):
 
 class ConferenceListEncoder(ModelEncoder):
     model = Conference
-    properties = ["name", "id"]
+    properties = ["name", "id", "max_attendees", "location"]
+    encoders = {
+        "location": LocationListEncoder(),
+    }
+
+    def get_extra_data(self, o):
+        return {"location": o.location.name}
 
 
 class ConferenceDetailEncoder(ModelEncoder):
