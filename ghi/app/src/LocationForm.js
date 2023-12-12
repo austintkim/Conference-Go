@@ -1,71 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom"
+
+const initialData = {
+  name:"",
+  room_count:"",
+  city:"",
+  state:""
+}
 
 function LocationForm(props) {
+  const navigate = useNavigate();
+
   const [states, setStates] = useState([]);
 
-  // Set the useState hook to store "name" in the component's state,
-  // with a default initial value of an empty string.
-  const [name, setName] = useState('');
-
-  const[roomCount, setRoomCount] = useState('');
-
-  const[city, setCity] = useState('');
-
-  const[state, setState] = useState('');
-
-
-  // Create the handleNameChange method to take what the user inputs
-  // into the form and store it in the state's "name" variable.
-  const handleNameChange = (event) => {
-    const value = event.target.value;
-    setName(value);
-  }
-
-  const handleRoomCountChange = (event) => {
-    const value = event.target.value;
-    setRoomCount(value);
-  }
-
-  const handleCityChange = (event) => {
-    const value = event.target.value;
-    setCity(value);
-  }
-
-  const handleStateChange = (event) => {
-    const value = event.target.value;
-    setState(value);
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    //create an empty JSON object
-    const data = {};
-    data.room_count = roomCount;
-    data.name = name;
-    data.city = city;
-    data.state = state;
-    console.log(data);
-
-    const locationUrl = 'http://localhost:8000/api/locations/';
-    const fetchConfig = {
-      method: "post",
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const response = await fetch(locationUrl, fetchConfig);
-    if (response.ok) {
-      const newLocation = await response.json();
-      console.log(newLocation);
-
-      setName('');
-      setRoomCount('');
-      setCity('');
-      setState('');
-    }
-  }
+  const [formData, setFormData] = useState(initialData);
 
   const fetchData = async () => {
     const url = 'http://localhost:8000/api/states/';
@@ -78,10 +26,36 @@ function LocationForm(props) {
     }
   }
 
-
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleFormChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]:e.target.value
+    })
+  }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const locationUrl = 'http://localhost:8000/api/locations/';
+
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const response = await fetch(locationUrl, fetchConfig);
+
+    if (response.ok) {
+      navigate("/");
+      setFormData(initialData);
+    }
+  }
 
     return (
       <div className="row">
@@ -90,19 +64,19 @@ function LocationForm(props) {
             <h1>Create a new location</h1>
             <form onSubmit={handleSubmit} id="create-location-form">
               <div className="form-floating mb-3">
-                <input onChange={handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" value={name}/>
+                <input onChange={handleFormChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" value={formData.name}/>
                 <label htmlFor="name">Name</label>
               </div>
               <div className="form-floating mb-3">
-                <input onChange={handleRoomCountChange} placeholder="Room count" required type="number" name="room_count" id="room_count" className="form-control" value={roomCount}/>
+                <input onChange={handleFormChange} placeholder="Room count" required type="number" name="room_count" id="room_count" className="form-control" value={formData.room_count}/>
                 <label htmlFor="room_count">Room count</label>
               </div>
               <div className="form-floating mb-3">
-                <input onChange={handleCityChange} placeholder="City" required type="text" name="city" id="city" className="form-control" value={city}/>
+                <input onChange={handleFormChange} placeholder="City" required type="text" name="city" id="city" className="form-control" value={formData.city}/>
                 <label htmlFor="city">City</label>
               </div>
               <div className="mb-3">
-                <select onChange={handleStateChange} required name="state" id="state" className="form-select" value={state}>
+                <select onChange={handleFormChange} required name="state" id="state" className="form-select" value={formData.state}>
                   <option value="">Choose a state</option>
                   {states.map(state => {
                     return (
