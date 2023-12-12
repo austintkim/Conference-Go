@@ -25,7 +25,7 @@ function AttendeesList() {
 
   return(
     <div>
-      <h1>Attendees List</h1>
+      <h1>Attendees</h1>
       <table className="table table-striped">
         <thead>
           <tr>

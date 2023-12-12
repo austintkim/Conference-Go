@@ -11,7 +11,7 @@ import {
   Route, Routes
 } from "react-router-dom";
 
-function App(props) {
+function App() {
   return (
     <>
     <Nav />
@@ -22,24 +22,24 @@ function App(props) {
           element = {<MainPage /> }
         ></Route>
         <Route
-          path='/attendees'
-          element= {<AttendeesList attendees= {props.attendees} />}
+          path='/conferences'
+          element= {<ConferenceList />}
         ></Route>
-          <Route
-            path='/locations/new'
-            element= {<LocationForm />}
-          ></Route>
         <Route
           path='/conferences/new'
           element= {<ConferenceForm />}
         ></Route>
         <Route
-          path='/conferences'
-          element= {<ConferenceList />}
+          path='/attendees'
+          element= {<AttendeesList />}
         ></Route>
         <Route
           path='/attendees/new'
           element= {<AttendeeForm />}
+        ></Route>
+        <Route
+          path='/locations/new'
+          element= {<LocationForm />}
         ></Route>
         <Route
           path='/presentations/new'
