@@ -6,8 +6,8 @@ function ConferenceList() {
     const getData = async () => {
         const request = await fetch('http://localhost:8000/api/conferences/')
         if (request.ok) {
-            const resp = await request.json()
-            setConferences(resp.conferences)
+            const resp = await request.json();
+            setConferences(resp.conferences);
         } else {
             console.error("Request Error")
         }

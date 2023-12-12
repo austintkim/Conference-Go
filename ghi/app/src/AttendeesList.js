@@ -7,9 +7,9 @@ function AttendeesList() {
     const request = await fetch('http://localhost:8001/api/attendees/');
     if (request.ok) {
       const resp = await request.json();
-      setAttendees(resp.attendees)
+      setAttendees(resp.attendees);
     } else {
-      console.error("Request Error")
+      console.error("Request Error");
     }
   }
 
